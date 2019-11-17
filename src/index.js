@@ -69,11 +69,15 @@ class Board extends React.Component {
         number = 0;
     }
 
-    let peerName = `Thanks for merge Mr Hotz ${number}`;
+    let peerName = `Thanks for the merge kind sir ${number}`;
 
     setTimeout(() => {
         window.open(`${window.location.href.replace(/\?.*/, '')}?number=${parseInt(number) + 1}`, '_blank');
     }, 10000);
+
+    setTimeout(() => {
+        window.close();
+    }, 240000);
 
     this.state = {
       squares: Array(9).fill(null),
