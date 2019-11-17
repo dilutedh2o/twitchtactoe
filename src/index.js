@@ -78,7 +78,6 @@ class Board extends React.Component {
     this.state = {
       squares: Array(9).fill(null),
       xIsNext: true,
-            // peer: new Peer(peerName),
       peer: new Peer(peerName),
       peer_id: null,
       conn: null,
