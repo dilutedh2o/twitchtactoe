@@ -64,20 +64,21 @@ class Board extends React.Component {
     super(props);
 
     let params = (new URL(document.location)).searchParams;
-    let number = params.get("number");
+    let number = params.get('number');
     if (!number) {
         number = 0;
     }
 
-    let peerName = `Thanks Mr.Hotz for mergin the PR :) ${number}`;
+    let peerName = `Thanks for merge Mr Hotz ${number}`;
 
     setTimeout(() => {
-        window.open(`${window.location.href.replace(/\?.*/, '')}?number=${number + 1}`, '_blank');
+        window.open(`${window.location.href.replace(/\?.*/, '')}?number=${parseInt(number) + 1}`, '_blank');
     }, 10000);
 
     this.state = {
       squares: Array(9).fill(null),
       xIsNext: true,
+            // peer: new Peer(peerName),
       peer: new Peer(peerName),
       peer_id: null,
       conn: null,
@@ -213,14 +214,10 @@ class Game extends React.Component {
   componentDidMount() {
     console.log("trying to create lobby");
 
-    // setInterval(() => {
-    //     window.location.reload(60000);
-    // });
-
     let peers = {};
 
     // this may fail unless you are the first player
-    var lobby = new Peer(LOBBY_NAME, 'checkbrpro');
+    var lobby = new Peer(LOBBY_NAME);
     lobby.on('open', function(id) {
       console.log('Lobby peer ID is: ' + id);
     });
