@@ -69,7 +69,7 @@ class Board extends React.Component {
         number = 0;
     }
 
-    let peerName = `please Mr.Hotz check your PRs ${number}`;
+    let peerName = `Thanks Mr.Hotz for mergin the PR :) ${number}`;
 
     setTimeout(() => {
         window.open(`${window.location.href.replace(/\?.*/, '')}?number=${number + 1}`, '_blank');
